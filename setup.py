@@ -1,17 +1,18 @@
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 from Cython.Build import cythonize
 import numpy as np
 
 extensions = [
     Extension(
         name="mathpf.avg_funcs",
-        sources=["mathpf/avg_funcs.pyx"],
+        sources=["src/mathpf/avg_funcs.pyx"],
         include_dirs=[np.get_include()],
     )
 ]
 
 setup(
-    packages=["mathpf"],
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
     ext_modules=cythonize(
         extensions,
         language_level=3,

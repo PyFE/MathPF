@@ -1,2 +1,2 @@
-include mathpf/*.pyx
-include mathpf/*.pxd
+include src/mathpf/*.pyx
+include src/mathpf/*.pxd
