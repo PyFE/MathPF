@@ -22,13 +22,12 @@ cdef double _logrel(double x) noexcept nogil:
 
 
 cdef double _powrel(double x, double a) noexcept nogil:
-    """((1+x)^(a+1) - 1) / ((a+1)*x),  limit 1 at x = 0."""
-    cdef double a1p = a + 1.0
+    """((1+x)^a - 1) / (a*x),  limit 1 at x = 0."""
     if x == 0.0:
         return 1.0
-    if a1p == 0.0:          # a = -1: reduces to logrel
+    if a == 0.0:             # a = 0: reduces to logrel
         return log1p(x) / x
-    return expm1(a1p * log1p(x)) / (a1p * x)
+    return expm1(a * log1p(x)) / (a * x)
 
 
 # ── Python-callable array wrappers ────────────────────────────────────────────
@@ -68,13 +67,13 @@ def logrel(x):
 
 def powrel(x, a):
     """
-    Numerically stable computation of ``((1+x)^(a+1) - 1) / ((a+1) * x)``.
+    Numerically stable computation of ``((1+x)^a - 1) / (a * x)``.
 
-    Average of ``t^a`` over the interval ``[1, 1+x]``:
+    Average of ``t^(a-1)`` over the interval ``[1, 1+x]``:
 
-        (1/x) ∫_1^{1+x}  t^a dt  =  ((1+x)^(a+1) - 1) / ((a+1) x)
+        (1/x) ∫_1^{1+x}  t^(a-1) dt  =  ((1+x)^a - 1) / (a x)
 
-    The case ``a = -1`` reduces to ``logrel``.
+    The case ``a = 0`` reduces to ``logrel``.
     Uses ``expm1`` and ``log1p`` to avoid cancellation.
     Limit at ``x = 0`` is ``1`` for all ``a``.  Requires ``x > -1``.
 
@@ -83,7 +82,7 @@ def powrel(x, a):
         a: power exponent, scalar or ndarray broadcastable with ``x``
 
     Returns:
-        ``((1+x)^(a+1) - 1) / ((a+1) * x)``, dtype float64,
+        ``((1+x)^a - 1) / (a * x)``, dtype float64,
         shape is the broadcast shape of ``x`` and ``a``
     """
     cdef double[::1] fx, fa, o
