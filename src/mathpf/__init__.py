@@ -1,4 +1,4 @@
-from .avg_funcs import avg_exp, avg_inv, avg_pow
+from .avg_funcs import logrel, powrel
 
-__all__ = ["avg_exp", "avg_inv", "avg_pow"]
-__version__ = "0.1.0"
+__all__ = ["logrel", "powrel"]
+__version__ = "0.2.0"
