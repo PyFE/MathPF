@@ -11,6 +11,7 @@ extensions = [
 ]
 
 setup(
+    packages=["mathpf"],
     ext_modules=cythonize(
         extensions,
         language_level=3,
