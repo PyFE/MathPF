@@ -1,0 +1,24 @@
+# Cython generated C files
+mathpf/*.c
+
+# Compiled extensions
+*.so
+*.pyd
+
+# Build artifacts
+build/
+dist/
+wheelhouse/
+*.egg-info/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/

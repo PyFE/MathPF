@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61", "Cython>=3.0", "numpy>=1.21"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "mathpf"
+version = "0.1.0"
+description = "Numerically stable math utility functions for quantitative finance"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.21"]
+
+[project.urls]
+Homepage = "https://github.com/PyFENG/MathPF"
+
+[tool.cibuildwheel]
+build = "cp310-* cp311-* cp312-* cp313-*"
+skip  = "*-musllinux*"
+
+[tool.cibuildwheel.linux]
+archs = ["x86_64"]
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64", "arm64"]
+
+[tool.cibuildwheel.windows]
+archs = ["AMD64"]
