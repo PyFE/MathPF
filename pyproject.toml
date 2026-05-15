@@ -21,8 +21,6 @@ skip  = "*-musllinux*"
 [tool.cibuildwheel.linux]
 archs = ["x86_64"]
 
-[tool.cibuildwheel.macos]
-archs = ["native"]
 
 [tool.cibuildwheel.windows]
 archs = ["AMD64"]
