@@ -22,7 +22,7 @@ skip  = "*-musllinux*"
 archs = ["x86_64"]
 
 [tool.cibuildwheel.macos]
-archs = ["x86_64", "arm64"]
+archs = ["native"]
 
 [tool.cibuildwheel.windows]
 archs = ["AMD64"]

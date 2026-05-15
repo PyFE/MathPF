@@ -12,8 +12,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-13]
-        # macos-13 is x86_64; cibuildwheel cross-compiles arm64 from there
+        os: [ubuntu-latest, windows-latest, macos-13, macos-14]
+        # macos-13 = x86_64, macos-14 = arm64 (Apple Silicon)
 
     steps:
       - uses: actions/checkout@v4.2.2
